@@ -2,13 +2,6 @@ import pygame
 from random import randint
 import draw_background
 import control_snake
-from pygame.locals import (
-    K_UP,
-    K_DOWN,
-    K_LEFT,
-    K_RIGHT,
-    KEYDOWN,
-)
 
 pygame.init()
 
@@ -17,8 +10,9 @@ screen = pygame.display.set_mode([660, 700])
 pygame.display.set_caption('snake')
 clock = pygame.time.Clock()
 FPS = 60  # frame per second, also relating with game speed, default = 60
+# [[75, 45], [70, 45], [65, 45], [60, 45], [60, 45], [55, 45], [50, 45],]
 
-
+# first setting
 def start():
     global move_x, move_y, move_speed, direction, snake, past_snake, spawn_fruit, fruit_x, fruit_y, score
     move_x, move_y = 1, 0
@@ -47,14 +41,14 @@ while running:
             break
 
         # change snake's moving direction
-        if event.type == KEYDOWN:
-            if event.key == K_RIGHT and direction[0] != 3:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT and direction[0] != 3:
                 direction[0] = 1
-            if event.key == K_UP and direction[0] != 4:
+            if event.key == pygame.K_UP and direction[0] != 4:
                 direction[0] = 2
-            if event.key == K_LEFT and direction[0] != 1:
+            if event.key == pygame.K_LEFT and direction[0] != 1:
                 direction[0] = 3
-            if event.key == K_DOWN and direction[0] != 2:
+            if event.key == pygame.K_DOWN and direction[0] != 2:
                 direction[0] = 4
 
     # change snake's moving direction
@@ -81,6 +75,8 @@ while running:
         spawn_fruit = 0
 
     pygame.draw.circle(screen, (255, 0, 0), (fruit_x,  fruit_y), 13)
+
+    print(len(snake))
 
     # check whether snake eat a fruit
     if fruit_x == snake[0][0] and fruit_y == snake[0][1]:
@@ -111,7 +107,8 @@ while running:
         start()
 
     # draw snake
-    for i in range(len(snake)):
+    pygame.draw.circle(screen, (0, 0, 0), (snake[0][0], snake[0][1]), 15)
+    for i in range(1, len(snake)):
         pygame.draw.circle(screen, (0, 0, 0), (snake[i][0], snake[i][1]), 15)
 
     pygame.display.flip()

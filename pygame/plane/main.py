@@ -23,7 +23,7 @@ bullet = []
 boss_xy = []
 enemy = []
 spawn_enemy_time = 0
-score = 0;
+score = 0
 
 while playing:
     clock.tick(250)
