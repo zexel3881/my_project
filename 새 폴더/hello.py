@@ -7,3 +7,5 @@ import matplotlib.pyplot as plt
 
 img = x_train[1].reshape(28, 28)
 plt.imshow(img)
+
+print(img)
